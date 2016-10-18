@@ -18,7 +18,7 @@ public class JsonObjAlbum {
     private String updated;
     private String published;
     private String edited;
-    private Map<String, String> links = new HashMap<String, String>();
+    private Map<String, String> links = new HashMap<>();
 
     public String getTitle() {
         return title;

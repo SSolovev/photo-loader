@@ -1,28 +1,13 @@
 package srg.api.app;
 
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.sun.syndication.feed.atom.Entry;
-import com.sun.syndication.feed.atom.Feed;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.MediaType;
-import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.feed.AtomFeedHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.http.converter.xml.MarshallingHttpMessageConverter;
-import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
-/**
- * Created by Sergey on 16.10.2016.
- */
 @Configuration
-@PropertySource("classpath:/app.properties")
+@PropertySource("classpath:app.properties")
 public class AppConfiguration {
 
 //    public List<HttpMessageConverter<?>> getConverters() {

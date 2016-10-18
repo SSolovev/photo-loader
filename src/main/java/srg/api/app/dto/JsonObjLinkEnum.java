@@ -2,14 +2,9 @@ package srg.api.app.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
-import org.apache.commons.lang.StringUtils;
 
 import java.util.Arrays;
-import java.util.Optional;
 
-/**
- * Created by Sergey on 18.10.2016.
- */
 public enum JsonObjLinkEnum {
     EDIT("edit"),
     PHOTOS("photos"),
@@ -28,7 +23,7 @@ public enum JsonObjLinkEnum {
     @JsonCreator
     public static JsonObjLinkEnum forValue(String value) {
         return Arrays.stream(JsonObjLinkEnum.values()).filter(
-                e -> e.val.equals(StringUtils.lowerCase(value))).findFirst().get();
+                e -> e.val.equals(value)).findFirst().get();
 //        if (res.isPresent()) {
 //            return res.get();
 //        } else {
