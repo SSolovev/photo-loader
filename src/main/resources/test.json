@@ -1,0 +1,17 @@
+{
+  "updated": "2016-10-18T17:51:27Z",
+  "links": {
+    "self": "http://api-fotki.yandex.ru/api/users/sery-volk/albums/",
+    "alternate": "http://fotki.yandex.ru/users/sery-volk/albums/"
+  },
+  "title": "sery-volk на Яндекс.Фотках",
+  "authors": [
+    {
+      "name": "sery-volk",
+      "uid": "9677440"
+    }
+  ],
+  "entries": [],
+  "author": "sery-volk",
+  "id": "urn:yandex:fotki:sery-volk:albums"
+}
