@@ -7,9 +7,9 @@ import org.springframework.context.ApplicationContext;
 import java.util.Arrays;
 
 @SpringBootApplication
-public class App {
+public class UploaderMain {
     public static void main(String[] args) {
-        ApplicationContext ctx = SpringApplication.run(App.class, args);
+        ApplicationContext ctx = SpringApplication.run(UploaderMain.class, args);
         Arrays.stream(ctx.getBeanDefinitionNames()).forEach(System.out::println);
     }
 }

@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 @PropertySource("classpath:app.properties")
-public class AppConfiguration {
+public class UploaderConfiguration {
 
 //    public List<HttpMessageConverter<?>> getConverters() {
 //        AtomFeedHttpMessageConverter atomConverter = new AtomFeedHttpMessageConverter();
