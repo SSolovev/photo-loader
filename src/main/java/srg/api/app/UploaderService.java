@@ -1,6 +1,8 @@
 package srg.api.app;
 
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
@@ -33,6 +35,8 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class UploaderService {
     private static final String DEFAULT_MIME = "application/json;type=entry";
+
+    private Logger log = LoggerFactory.getLogger(UploaderController.class);
 
     @Value("${token}")
     private String token;
@@ -143,7 +147,7 @@ public class UploaderService {
 
     public JsonObjPhoto uploadPhoto(String url, File file) throws IOException {
         ResponseEntity<JsonObjPhoto> result;
-        try (InputStream in = new FileInputStream(file.getPath());) {
+        try (InputStream in = new FileInputStream(file.getPath())) {
 
             HttpHeaders headers = new HttpHeaders();
             headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
