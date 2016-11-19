@@ -5,14 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import srg.api.app.dto.JsonObjAlbum;
 import srg.api.app.dto.JsonObjAlbumsInfo;
@@ -20,9 +14,10 @@ import srg.api.app.dto.JsonObjPhoto;
 import srg.api.app.dto.JsonObjService;
 import srg.api.app.exceptions.CreateAlbumException;
 
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -63,8 +58,7 @@ public class UploaderService {
             HttpEntity<String> entity = new HttpEntity<>(getHeaders(DEFAULT_MIME, null));
 
             ResponseEntity<JsonObjService> resp = restTemplate.exchange(url, HttpMethod.GET, entity, JsonObjService.class);
-
-            System.out.println(resp.getBody());
+            log.info("Response from getAlbumsUrl", resp.getBody());
             this.albumUrl = resp.getBody().getCollections().getAlbumList().getHref();
         }
 
@@ -110,9 +104,7 @@ public class UploaderService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        System.out.println("Terminated: " + termination);
-        System.out.println(System.currentTimeMillis() - start);
-        System.out.println("END");
+        log.info("Terminated: {}, time:{} END", termination, System.currentTimeMillis() - start);
     }
 
     public void uploadPhotosFromDir(File file) throws IOException {
@@ -128,7 +120,7 @@ public class UploaderService {
                     } else {
                         executorService.execute(() -> {
                             try {
-                                System.out.println(uploadPhoto(album.getLinks().get("photos"), f));
+                                log.info("Photo uploaded: {}", uploadPhoto(album.getLinks().get("photos"), f));
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -141,7 +133,7 @@ public class UploaderService {
 //            System.out.println("We have troubles with this album: " + file.getName());
 //            e.printStackTrace();
         } catch (CreateAlbumException e) {
-            e.printStackTrace();
+            log.error("Exception while loading from dir: {}", e);
         }
     }
 
